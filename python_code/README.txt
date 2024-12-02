@@ -1,0 +1,1 @@
+This script allows to update Linux, set it's hostname and ip address
