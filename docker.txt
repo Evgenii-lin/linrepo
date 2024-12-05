@@ -1,0 +1,14 @@
+1. start nginx container using docker and attaching /usr/share/nginx/html to modify web content
+
+$ docker run -it --rm -d -p 8080:80 --name web -v ~/site-content:/usr/share/nginx/html nginx
+
+/usr/share/nginx/html -> change html for nginx container
+
+
+
+2. start postgress database
+
+docker run --name some-postgres -e POSTGRES_PASSWORD=somepassword -d postgres  (или -v /var/lib/postgresql/data)
+
+
+
