@@ -1,0 +1,31 @@
+To install Nginx, Postgress database, let's create a file called web_services.yml and write in this file:
+
+---
+
+ - hosts: all
+   become:true
+   tasks:
+ 
+ - name: update repository
+   apt:
+       update_cache: yes
+
+ - name: nginx install
+   apt:
+       name:nginx
+       state:latest
+  
+ - name: psdb install
+   apt:
+       name:postgress
+       state:latest
+
+ - name: Install Grafana Agent Flow
+   tasks:
+    - name: Install Grafana Agent Flow
+      ansible.builtin.include_role:
+        name: grafana.grafana.grafana_agent
+
+To launch the playbook we'll use the command:
+
+ansible-playbook --ask-become-pass web_services.yml
