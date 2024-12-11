@@ -1,0 +1,29 @@
+apt install prometheus
+apt install prometheus-blackbox-exporter
+
+nano /etc/prometheus/blackbox.yml
+
+http_2xx:
+    prober: http
+     http:
+        preffered_ip_protocol: "ip4"
+
+
+service prometheus-blackbox-exporter restart
+
+nano /etc/prometheus/prometheus.yml
+
+-job_name: check_http   
+metrcis_path: /probe
+params:
+   module: [http_2xx]    вот этот ранее созданный блекбокс
+static_configs:
+   -targets:
+    -https://somewebsite
+    relabel_configs:
+      -source_label: [__address__]
+      target_label:   ____param_target
+      -source_labels: [___param_target]
+      target_label: instance
+      -target_label: __address____
+      replacement:localhost:9115
